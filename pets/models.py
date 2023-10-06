@@ -19,12 +19,12 @@ class Pet(models.Model):
     group = models.ForeignKey(
         "groups.Group",
         related_name="pets",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
     )
     traits = models.ManyToManyField(
         "traits.Trait",
         related_name="pets"
     )
 
-    # def __repr__(self) -> str:
-    #     return f"<Pet: {self.name}>"
+    def __repr__(self) -> str:
+        return f"<Pet:v {self.id} - {self.name}>"

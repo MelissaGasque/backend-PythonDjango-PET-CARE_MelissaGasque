@@ -1,11 +1,11 @@
 from rest_framework import serializers
-
-from groups.serializers import GroupSerializer
-from traits.serializers import TraitsSerializer
 from .models import SexChoices
+from groups.serializers import GroupSerializer
+from traits.serializers import TraitSerializer
 
 
 class PetSerializer(serializers.Serializer):
+    # Formata, valida, semelhante ao zod
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=50)
     age = serializers.IntegerField()
@@ -14,4 +14,4 @@ class PetSerializer(serializers.Serializer):
         choices=SexChoices.choices,
         default=SexChoices.NOT_INFORMED)
     group = GroupSerializer()
-    traits = TraitsSerializer(many=True)
+    traits = TraitSerializer(many=True)
