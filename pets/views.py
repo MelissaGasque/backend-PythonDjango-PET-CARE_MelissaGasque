@@ -59,7 +59,7 @@ class PetDetailView(APIView):
             return Response(
                 {"detail": "Not found."}, status.HTTP_404_NOT_FOUND
             )
-        
+
     def patch(self, req: Request, pet_id: int) -> Response:
         try:
             found_pet = Pet.objects.get(id=pet_id)
@@ -70,6 +70,41 @@ class PetDetailView(APIView):
 
         serializer = PetSerializer(data=req.data, partial=True)
         serializer.is_valid(raise_exception=True)
+
+        validated_data = serializer.validated_data
+        if "group" in validated_data:
+            try:
+                groups = validated_data.pop("group")
+                group1 = Group.objects.get(
+                    scientific_name__iexact=groups["scientific_name"]
+                )
+            except Group.DoesNotExist:
+                group1 = Group.objects.create(**groups)
+            found_pet.group = group1
+
+        if "traits" in validated_data:
+            try:
+                traits_data = validated_data.pop("traits")
+                traits_list = []
+
+                for trait_data in traits_data:
+                    trait_name = trait_data["name"]
+
+                    trait = Trait.objects.get(name__iexact=trait_name)
+                    traits_list.append(trait)
+
+                found_pet.traits.set(traits_list)
+            except Trait.DoesNotExist:
+                traits_to_create = []
+
+                for trait_data in traits_data:
+                    trait_name = trait_data["name"]
+                    trait = Trait(name=trait_name)
+                    traits_to_create.append(trait)
+
+                Trait.objects.bulk_create(traits_to_create)
+
+                found_pet.traits.set(traits_to_create)
 
         for key, value in serializer.validated_data.items():
             setattr(found_pet, key, value)  # found_pet[k] = v
