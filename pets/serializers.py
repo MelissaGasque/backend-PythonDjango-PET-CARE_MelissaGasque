@@ -5,7 +5,6 @@ from traits.serializers import TraitSerializer
 
 
 class PetSerializer(serializers.Serializer):
-    # Formata, valida, semelhante ao zod
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=50)
     age = serializers.IntegerField()
