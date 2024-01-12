@@ -19,24 +19,38 @@ Essa API permite a empresa PetCare ter maior controle e organização dos dados 
 
 ### Ative o ambiente virtual
 #### No Windows
-```venv\Scripts\activate```
+```
+    venv\Scripts\activate
+```
 #### No Linux/Mac
-```source venv/bin/activate```
+```
+    source venv/bin/activate
+```
 
 
 ## Instalar o Django:
-```pip install django```
+```
+    pip install django
+```
 
 ## Instalação das Dependencias
-```pip install -r requirements.txt```
+```
+    pip install -r requirements.txt
+```
 
 ## Migrações e Aplicações
 ### Execute as migrações
-```python manage.py makemigrations```
-```python manage.py migrate```
+```
+    python manage.py makemigrations
+```
+```
+    python manage.py migrate
+```
 
 ### Inicie o servidor de desenvolvimento
-```python manage.py runserver```
+```
+    python manage.py runserver
+```
 
 
 
