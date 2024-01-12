@@ -1,4 +1,43 @@
-# M5 - Pet Kare
+# PetCare
+A linguagem utilizada é o Python e o framework Django. O Banco de dados utilizado é o sqlite3.  
+Essa API permite a empresa PetCare ter maior controle e organização dos dados dos animais.  
+
+| Endpoint                  | Verbo HTTP | Objetivo                                          |
+|---------------------------|------------|---------------------------------------------------|
+| /api/pets/                | POST       | Cadastrar pet                                     |
+| /api/pets/                | GET        | Listar pet                                       |
+| /api/pets/?trait=nome_da_trait ou /api/pets?trait=nome_da_trait | GET        | Filtragem de pets que possuem a trait passada por query param |
+| /api/pets/<pet_id>/       | GET        | Busca de pet                                     |
+| /api/pets/<pet_id>/       | PATCH      | Atualização de pet                               |
+| /api/pets/<pet_id>/       | DELETE     | Deleção de pet                                   |
+ 
+## Configuração do Ambiente Virtual (Opcional, mas recomendado)
+### Crie um ambiente virtual
+```python -m venv venv```
+
+### Ative o ambiente virtual
+#### No Windows
+```venv\Scripts\activate```
+#### No Linux/Mac
+```source venv/bin/activate```
+
+
+## Instalar o Django:
+```pip install django```
+
+## Instalação das Dependencias
+```pip install -r requirements.txt```
+
+## Migrações e Aplicações
+### Execute as migrações
+```python manage.py makemigrations```
+```python manage.py migrate```
+
+### Inicie o servidor de desenvolvimento
+```python manage.py runserver```
+
+
+
 
 ## Preparando ambiente para execução dos testes
 
