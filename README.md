@@ -13,7 +13,9 @@ Essa API permite a empresa PetCare ter maior controle e organização dos dados 
  
 ## Configuração do Ambiente Virtual (Opcional, mas recomendado)
 ### Crie um ambiente virtual
-```python -m venv venv```
+```
+    python -m venv venv
+```
 
 ### Ative o ambiente virtual
 #### No Windows
